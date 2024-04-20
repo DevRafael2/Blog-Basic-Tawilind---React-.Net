@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="8.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Enternova.Blog.Data\Enternova.Blog.Data.csproj" />
+    <ProjectReference Include="..\Enternova.Blog.Dtos\Enternova.Blog.Dtos.csproj" />
+    <ProjectReference Include="..\Enternova.Blog.Helpers\Enternova.Blog.Helpers.csproj" />
+    <ProjectReference Include="..\Enternova.Blog.Lang\Enternova.Blog.Lang.csproj" />
+    <ProjectReference Include="..\Enternova.Blog.Models\Enternova.Blog.Models.csproj" />
+    <ProjectReference Include="..\Enternova.Blog.Util\Enternova.Blog.Util.csproj" />
+  </ItemGroup>
+
+</Project>
