@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { apiAxios } from "../api/api";
 import { Post } from "../interfaces/Post";
 
@@ -25,6 +26,14 @@ const createPost = async (token: string, title: string, description: string, use
     Authorization: `Bearer ${ token }`
   }});
 
+  if (!response.data.isComplete) {
+    Swal.fire({
+      title: response.data.message,
+      icon: "error",
+      showConfirmButton: true,
+      showCancelButton: false
+    });
+  }
   return response.data.data;
 };
 
@@ -34,12 +43,27 @@ const editPost = async (token: string, postId: string, title: string, descriptio
     descriptionPost: description,
     userId
   }, { headers: { Authorization: `Bearer ${ token }` } });
-
+  if (!response.data.isComplete) {
+    Swal.fire({
+      title: response.data.message,
+      icon: "error",
+      showConfirmButton: true,
+      showCancelButton: false
+    });
+  }
   return response.data;
 };
 
 const deletePost = async (token:string, postId: string): Promise<void> => {
   const response = await apiAxios.delete(`/Api/Post/${ postId }`, {headers: { Authorization: `Bearer ${ token }` }})
+  if (!response.data.isComplete) {
+    Swal.fire({
+      title: response.data.message,
+      icon: "error",
+      showConfirmButton: true,
+      showCancelButton: false
+    });
+  }
   return response.data;
 };
 

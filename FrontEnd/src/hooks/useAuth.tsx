@@ -8,6 +8,7 @@ import React, {
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./useLocalStorage";
 import { login as authServiceLogin } from "../services/authService";
+import Swal from "sweetalert2";
 
 export interface AuthContextType {
   user: any;
@@ -29,7 +30,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(userData);
         navigate("/");
       } catch (error) {
-        throw new Error("Error");
+        Swal.fire({
+          title: "Error desconocido",
+          icon: "error",
+          showConfirmButton: true,
+          showCancelButton: false
+        });
       }
     },
     [setUser, navigate]

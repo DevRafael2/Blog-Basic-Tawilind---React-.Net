@@ -1,7 +1,7 @@
 const Navbar: React.FC = () => {
   return (
     <>
-      <h1>Hi</h1>
+      <h1>Hola</h1>
     </>
   );
 };
