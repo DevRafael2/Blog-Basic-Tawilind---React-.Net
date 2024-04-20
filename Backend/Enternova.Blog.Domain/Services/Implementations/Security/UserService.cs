@@ -47,7 +47,7 @@ namespace Enternova.Blog.Domain.Services.Implementations.Security
             customQueryParam.Where = (e) => e.UserName == creds.UserName && e.Password == (creds.Password.Sha256());
             var user = await _repository.GetAsync(customQueryParam);
             if (user.Data?.Any() == false)
-                return new StatusData<OutUserLogin>() { IsComplete = true, Message = _stringLocalizer["failed_login"] };
+                return new StatusData<OutUserLogin>() { IsComplete = false, Message = _stringLocalizer["failed_login"] };
 
             var firstUser = user.Data.FirstOrDefault();
             var fullName = $"{firstUser.FirstName} {firstUser.FirstLastName}";

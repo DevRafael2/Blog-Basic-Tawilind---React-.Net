@@ -26,13 +26,13 @@ namespace Enternova.Blog.Domain.Services.Implementations
         public virtual async Task<StatusData<IEnumerable<OutDto>>> GetAsync(QueryParam FilterParams = default)
         {
             var data = await _repository.GetAsync(FilterParams);
-            return new StatusData<IEnumerable<OutDto>>() { Data = _mapper.Map<List<OutDto>>(data.Data), Message = _stringLocalizer["success_get"], NumberOfPages = data.NumberOfPages };
+            return new StatusData<IEnumerable<OutDto>>() { IsComplete = true, Data = _mapper.Map<List<OutDto>>(data.Data), Message = _stringLocalizer["success_get"], NumberOfPages = data.NumberOfPages };
         }
 
         public virtual async Task<StatusData<OutDto>> GetFirstAsync(IdType Id)
         {
             var data = await _repository.GetFirstAsync(Id);
-            return new StatusData<OutDto>() { Data = _mapper.Map<OutDto>(data.Data), Message = _stringLocalizer["success_get"] };
+            return new StatusData<OutDto>() { IsComplete = true, Data = _mapper.Map<OutDto>(data.Data), Message = _stringLocalizer["success_get"] };
         }
 
         public virtual async Task<StatusData<OutDto>> CreateAsync(InDto InEntity)
@@ -47,7 +47,7 @@ namespace Enternova.Blog.Domain.Services.Implementations
             var status = await _repository.CreateAsync(entity);
             await _repository.SaveChangesAsync();
 
-            return new StatusData<OutDto> { Data = _mapper.Map<OutDto>(status.Data), Message = _stringLocalizer["success_create"] };
+            return new StatusData<OutDto> { IsComplete = true, Data = _mapper.Map<OutDto>(status.Data), Message = _stringLocalizer["success_create"] };
         }
 
         public virtual async Task<Status> DeleteAsync(IdType Id)

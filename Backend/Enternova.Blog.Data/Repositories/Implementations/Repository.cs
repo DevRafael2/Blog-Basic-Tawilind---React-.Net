@@ -23,7 +23,7 @@ namespace Enternova.Blog.Data.Repositories.Implementations
             _dbSet.AsNoTracking();
             await _dbSet.AddAsync(Entity);
 
-            return new StatusData<Entity>() { Data = Entity };
+            return new StatusData<Entity>() { IsComplete = true, Data = Entity };
         }
 
         public virtual async Task<StatusData<IEnumerable<Entity>>> GetAsync(QueryParams<Entity> FilterParams = null)
@@ -39,13 +39,13 @@ namespace Enternova.Blog.Data.Repositories.Implementations
             int totalPages = (int)Math.Ceiling((double)countData / FilterParams.ElementsPerPage);
             int Index = (FilterParams.ActualPage - 1) * FilterParams.ElementsPerPage;
 
-            return new StatusData<IEnumerable<Entity>>() { Data = await dbSet.Skip(Index).Take(FilterParams.ElementsPerPage).ToListAsync(), NumberOfPages = totalPages };
+            return new StatusData<IEnumerable<Entity>>() { IsComplete = true, Data = await dbSet.Skip(Index).Take(FilterParams.ElementsPerPage).ToListAsync(), NumberOfPages = totalPages };
 
         }
 
         public virtual async Task<StatusData<Entity>> GetFirstAsync(IdType Id)
         {
-            return new StatusData<Entity> { Data = await _context.Set<Entity>().FirstOrDefaultAsync(x => x.Id.Equals(Id)) };
+            return new StatusData<Entity> { IsComplete = true, Data = await _context.Set<Entity>().FirstOrDefaultAsync(x => x.Id.Equals(Id)) };
         }
 
 
