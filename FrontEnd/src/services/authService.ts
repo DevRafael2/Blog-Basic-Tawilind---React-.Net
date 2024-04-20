@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { apiAxios } from "../api/api";
 
 /** Response */
@@ -18,9 +19,14 @@ const login = async (userName: string, password: string): Promise<UserData> => {
       deviceName: "Web",
       operatingSystem: "Windows",
     });
-    // ----
-    if (response.status !== 200) {
-      throw new Error("Invalid email or password");
+    
+    if (!response.data.isComplete) {
+      Swal.fire({
+        title: response.data.message,
+        icon: "error",
+        showConfirmButton: true,
+        showCancelButton: false
+      });
     }
     // ----
     return response.data.data;

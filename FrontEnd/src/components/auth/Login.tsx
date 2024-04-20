@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login: React.FC = () => {
   const [userName, setUserName] = useState("");
@@ -11,9 +12,13 @@ const Login: React.FC = () => {
     event.preventDefault();
     try {
       const userData = await auth?.login(userName, password);
-      console.log("User logged in successfully: ", userData);
     } catch (error) {
-      alert("Error");
+      Swal.fire({
+        title: "Error desconocido",
+        icon: "error",
+        showConfirmButton: true,
+        showCancelButton: false
+      });
     }
   };
 
@@ -27,7 +32,7 @@ const Login: React.FC = () => {
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
+            Ingrese sus credenciales
           </h2>
         </div>
 
@@ -38,7 +43,7 @@ const Login: React.FC = () => {
                 htmlFor="userName"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Username
+                Usuario
               </label>
               <div className="mt-2">
                 <input
@@ -59,7 +64,7 @@ const Login: React.FC = () => {
                   htmlFor="password"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Password
+                  Contraseña
                 </label>
               </div>
               <div className="mt-2">
@@ -81,7 +86,7 @@ const Login: React.FC = () => {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in
+                Ingresar
               </button>
             </div>
           </form>
