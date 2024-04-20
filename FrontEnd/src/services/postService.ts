@@ -64,6 +64,15 @@ const deletePost = async (token:string, postId: string): Promise<void> => {
       showCancelButton: false
     });
   }
+  else 
+  {
+    Swal.fire({
+      title: response.data.message,
+      icon: "success",
+      showConfirmButton: true,
+      showCancelButton: false
+    });
+  }
   return response.data;
 };
 
