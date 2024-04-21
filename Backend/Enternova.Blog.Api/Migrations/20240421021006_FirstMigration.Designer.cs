@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Enternova.Blog.Api.Migrations
 {
     [DbContext(typeof(EnternovaBlogContext))]
-    [Migration("20240419013834_FirstMigrationBlog")]
-    partial class FirstMigrationBlog
+    [Migration("20240421021006_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

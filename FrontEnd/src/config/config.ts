@@ -1,1 +1,1 @@
-export const baseUrl = "http://enternovablog.somee.com";
+export const baseUrl = "https://localhost:7007";
